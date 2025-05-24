@@ -4,9 +4,30 @@
     <meta charset="UTF-8" />
     <title>Key Detection</title>
     <script type="text/javascript" src="./cornify.js"></script>
-    <link rel="icon" href="https://fav.farm/🔥" />
+    <link rel="icon" href="https://fav.farm/✅" />
   </head>
   <body>
-    <script></script>
+    <script>
+      const pressed = [];
+      const secretCode = "red";
+
+      window.addEventListener("keyup", (e) => {
+        console.log(e.key);
+        pressed.push(e.key);
+        pressed.splice(
+          -secretCode.length - 1,
+          pressed.length - secretCode.length
+        );
+        /*splice:primul parametru de unde iar al doilea cate
+        cu splice putem sa adaugam elemente la o pozitie anume
+        Scopul: să nu păstrăm un array uriaș, ci doar ultimele caractere tastate, astfel încât să putem verifica dacă s-a tastat codul secret.*/
+        if (pressed.join("").includes(secretCode)) {
+          /*Concatenează toate tastele apăsate într-un string (ex: "red") și verifică dacă conține secretCode*/
+          console.log("DING DING!");
+          cornify_add();
+        }
+        console.log(pressed);
+      });
+    </script>
   </body>
 </html>
