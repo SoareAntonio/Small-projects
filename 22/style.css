@@ -1,0 +1,48 @@
+.head{
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.element{
+  height:200px;
+  width:200px;
+  background: #0071FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Poppins;
+  font-weight: 700;
+  font-size: 1.35rem;
+  color:white;
+
+  animation-duration:3s ;
+  animation-name: spin;
+  animation-timing-function: ease-in-out;
+  animation-delay: 1s;/*va astepta 1 secunda pana sa inceapa*/
+  animation-iteration-count: infinite;/*de cate ori se face animatia*/
+  animation-direction: normal;
+  /*animation-fill-mode: forwards;se va opri la ultimul frame*/
+  /*animation-play-state: paused;se va opri cand fac hover*/
+  /*pentru toate aceste 6 putem scrie doar intr o linie astfel:*/
+
+  animation: 3s spin ease-in-out 1s infinite alternate;
+}
+
+@keyframes spin{
+  0%{
+
+  }
+  50%{
+    scale:2;
+    transform: rotate(0);
+    border-radius: 0;
+  }
+  100%{
+    transform: rotate(360deg);
+    border-radius: 50%;
+    scale:2;
+  }
+}

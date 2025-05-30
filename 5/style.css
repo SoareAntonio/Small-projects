@@ -6,87 +6,86 @@ html {
       font-weight: 200;
     }
 
-    body {
-      margin: 0;
-    }
+  body {
+    margin: 0;
+  }
 
-    *, *:before, *:after {
-      box-sizing: inherit;
-    }
-/* *:before, *:after = aplică și pentru pseudo-elementele ::before și ::after (de ex. elemente decorative create în CSS).
-box-sizing: inherit = fiecare element moștenește valoarea box-sizing de la elementul părinte (de obicei de la html).
-În proiectul tău, html { box-sizing: border-box; }, deci toate elementele vor folosi border-box.*/
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
+  .panels {
+    min-height: 100vh;
+    overflow: hidden;/* Ascunde tot conținutul care iese în afara elementului Este util pentru că panourile au animații și tranziții (flex grow, scale etc.), iar uneori ele pot "ieși" din container. overflow: hidden previne deranjarea layout-ului sau barele de scroll.*/
+    display: flex;
 
-    .panels {
-      min-height: 100vh;
-      overflow: hidden;/* Ascunde tot conținutul care iese în afara elementului Este util pentru că panourile au animații și tranziții (flex grow, scale etc.), iar uneori ele pot "ieși" din container. overflow: hidden previne deranjarea layout-ului sau barele de scroll.*/
-      display: flex;
+  }
 
-    }
+  .panel {
+    background: #6B0F9C;
+    box-shadow: inset 0 0 0 5px rgba(255,255,255,0.1);
+    color: white;
+    text-align: center;
+    align-items: center;
+    transition:
+      font-size 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+      flex 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+      background 0.2s;
+    /*Declanșează animații lineare fluide atunci când aceste proprietăți se schimbă:
+font-size – animă dimensiunea fontului,
+flex – animă extinderea contractarea panelului (de la flex:1 la flex:5 în .panel.open),
+background – schimbarea de culoare sau imagine de fundal (dacă apare).*/
+    font-size: 20px;
+    background-size: cover;
+    background-position: center;
+    flex:1;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
 
-    .panel {
-      background: #6B0F9C;
-      box-shadow: inset 0 0 0 5px rgba(255,255,255,0.1);
-      color: white;
-      text-align: center;
-      align-items: center;
-      /* Safari transitionend event.propertyName === flex */
-      /* Chrome + FF transitionend event.propertyName === flex-grow */
-      transition:
-        font-size 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
-        flex 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
-        background 0.2s;
-      font-size: 20px;
-      background-size: cover;
-      background-position: center;
-      flex:1;
-      justify-content: center;
-      align-items: center;
-      display: flex;
-      flex-direction: column;
-    }
+  .panel1 { background-image:url(https://images.unsplash.com/photo-1533812451773-f2b04c2bdeb2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D); }
+  .panel2 { background-image:url(https://images.unsplash.com/photo-1528155124528-06c125d81e89?q=80&w=1978&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D); }
+  .panel3 { background-image:url(https://images.unsplash.com/photo-1465188162913-8fb5709d6d57?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&cs=tinysrgb&w=1500&h=1500&fit=crop&s=967e8a713a4e395260793fc8c802901d); }
+  .panel4 { background-image:url(https://images.unsplash.com/photo-1588167056547-c183313da47c?q=80&w=2031&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D); }
+  .panel5 { background-image:url(https://images.unsplash.com/photo-1612522677838-2338b1b0b65d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDJ8aVVJc25WdGpCMFl8fGVufDB8fHx8fA%3D%3D); }
 
-    .panel1 { background-image:url(https://images.unsplash.com/photo-1533812451773-f2b04c2bdeb2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D); }
-    .panel2 { background-image:url(https://images.unsplash.com/photo-1528155124528-06c125d81e89?q=80&w=1978&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D); }
-    .panel3 { background-image:url(https://images.unsplash.com/photo-1465188162913-8fb5709d6d57?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&cs=tinysrgb&w=1500&h=1500&fit=crop&s=967e8a713a4e395260793fc8c802901d); }
-    .panel4 { background-image:url(https://images.unsplash.com/photo-1588167056547-c183313da47c?q=80&w=2031&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D); }
-    .panel5 { background-image:url(https://images.unsplash.com/photo-1612522677838-2338b1b0b65d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDJ8aVVJc25WdGpCMFl8fGVufDB8fHx8fA%3D%3D); }
+  /* Flex Children .panel > * = toate elementele direct copil al .panel, adică cele 3 <p> din fiecare panou.*/
+  .panel > * {
+    margin: 0;
+    width: 100%;
+    transition: transform 0.5s;
+    flex:1 0 auto;
+    /*🔼 Crește ca să umple spațiul (grow: 1)
+    🔽 Nu se micșorează (shrink: 0)
+    📏 Ia dimensiunea inițială în funcție de conținut (basis: auto)*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-    /* Flex Children .panel > * = toate elementele direct copil al .panel, adică cele 3 <p> din fiecare panou.*/
-    .panel > * {
-      margin: 0;
-      width: 100%;
-      transition: transform 0.5s;
-      flex:1 0 auto;
-      /*🔼 Crește ca să umple spațiul (grow: 1)
-      🔽 Nu se micșorează (shrink: 0)
-      📏 Ia dimensiunea inițială în funcție de conținut (basis: auto)*/
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+  .panel > *:first-child { transform: translateY(-100%);}
+  .panel.open-active > *:first-child {transform: translateY(0);}
+  .panel > *:last-child { transform: translateY(100%);}
+  .panel.open-active > *:last-child {transform: translateY(0);}
 
-    .panel > *:first-child { transform: translateY(-100%);}
-    .panel.open-active > *:first-child {transform: translateY(0);}
-    .panel > *:last-child { transform: translateY(100%);}
-    .panel.open-active > *:last-child {transform: translateY(0);}
+  .panel p {
+    text-transform: uppercase;
+    font-family: 'Amatic SC', cursive;
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+    font-size: 2em;
+  }
 
-    .panel p {
-      text-transform: uppercase;
-      font-family: 'Amatic SC', cursive;
-      text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
-      font-size: 2em;
-    }
+    .panel p:nth-child(2) {/* Selectează al doilea paragraf (<p>) din fiecare .panel */
+    font-size: 4em;
+  }
 
-     .panel p:nth-child(2) {/* Selectează al doilea paragraf (<p>) din fiecare .panel */
-      font-size: 4em;
-    }
-
-    .panel.open {
-      flex:5;
-      font-size: 40px;
-    }
-    .cta{
-      color: white;
-      text-decoration: none;
-    }
+  .panel.open {
+    flex:5;
+    font-size: 40px;
+  }
+  .cta{
+    color: white;
+    text-decoration: none;
+  }
